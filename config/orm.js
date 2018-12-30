@@ -38,3 +38,66 @@ function objToSql(obj) {
     // translate array of strongs to a single comma-separated string
     return arr.toString();
 }
+
+// Object for the SQL statement functions that will be exported
+let orm = {
+
+    // selectAll() function
+    selectAll: function(tableInput, callBack) {
+        let queryString = "SELECT * FROM " + tableInput + ";";
+
+        // pass the queryString to the sql database
+        connection.query(queryString, function(err, result) {
+            if (err) {
+                throw err;
+            }
+            callBack(result);
+        });
+    },
+
+    // insertOne() function
+    insertOne: function(tableInput, columnInput, valueToInsert, callBack) {
+        let queryString = "INSERT INTO " + tableInput;
+        queryString += " (";
+        queryString += columnInput.toString();
+        queryString += ") ";
+        queryString += "VALUES (";
+        queryString += printQuestionMarks(valueToInsert.length);
+        queryString += ") ";
+
+        // console log the queryString
+        console.log(queryString);
+
+        // pass the queryString to the sql database
+        connection.query(queryString, valueToInsert, function(err, result){
+            if(err) {
+                throw err;
+            }
+            callBack(result);
+        });
+    },
+
+    // updateOne() function
+    updateOne: function(tableInput, objColVals, condition, callBack) {
+        let queryString = "UPDATE " + tableInput;
+        queryString += " SET ";
+        queryString += objToSql(objColVals);
+        queryString += " WHERE ";
+        queryString += condition;
+
+        // console log the query strong
+        console.log(queryString);
+
+        // pass the queryString to the sql database
+        connection.query(queryString, function(err, result) {
+            if(err) {
+                throw err;
+            }
+
+            callBack(result);
+        });
+    }
+};
+
+// export orm object for model
+module.exports = orm;
