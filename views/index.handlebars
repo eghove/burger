@@ -1,3 +1,11 @@
 {{!-- this is the content that gets passed to body in main.handlebars --}}
 
-<h1>TEST!</h1>
+<h1>BURGERS</h1>
+<ul>
+    {{#each burgers}}
+    <li>
+        <p>Burger Name: {{this.burger_name}}</p>
+        <p>Devoured?: {{this.devoured}} </p>
+    </li>
+    {{/each }}
+</ul>

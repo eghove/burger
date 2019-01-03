@@ -15,8 +15,18 @@ let router = express.Router();
 
 // 1. GET route that displays both burgers and devoured burgers
 router.get("/", function(req, res) {
-    
-})
+    // query the database
+    burger.displayBurgers(function(data) {
+        // pass the results of the query to this handlebars object
+        let hbarsObj = {
+            burgers: data
+        };
+        // log the result server side
+        console.log(hbarsObj);
+        // pass the handlebars object to index.handlebars
+        res.render("index", hbarsObj);
+    });
+});
 
 // 2. POST route that lets the user add a burger to our app
 
