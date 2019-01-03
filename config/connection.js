@@ -1,5 +1,13 @@
 // ===REQUIREMENTS==================================================
+//require the dotenv module
+require("dotenv").config();
+
+//loads the exported pieces from keys.js
+const keys = require("./keys.js");
+
+// import mysql library
 let mysql = require("mysql");
+
 
 //==THE DATABASE CONNECTION=========================================
 let connection = mysql.createConnection({
