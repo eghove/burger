@@ -25,7 +25,6 @@ app.set("view engine", "handlebars");
 const routes = require("./controllers/burgers_controller.js");
 
 // give the server access to the routes
-// TODO: need to get the routes set up and then I can remove comments to section below.
 app.use(routes);
 
 // START THE SERVER

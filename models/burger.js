@@ -6,8 +6,8 @@ let orm = require("../config/orm.js");
 let burger = {
 
     // function to display burgers
-    displayBurgers: function(colToSearch, valueToSearch, callBack) {
-        orm.selectAll("burgers", colToSearch, valueToSearch, function(res) {
+    displayBurgers: function(callBack) {
+        orm.selectAll("burgers", function(res) {
             callBack(res);
         });
     },

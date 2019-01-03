@@ -43,9 +43,8 @@ function objToSql(obj) {
 let orm = {
 
     // selectAll() function
-    selectAll: function(tableInput, colToSearch, valueToSearch, callBack) {
+    selectAll: function(tableInput, callBack) {
         let queryString = "SELECT * FROM " + tableInput;
-        queryString = " WHERE " + colToSearch + " = " + valueToSearch;
 
         // pass the queryString to the sql database
         connection.query(queryString, function(err, result) {
