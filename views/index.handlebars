@@ -1,11 +1,27 @@
 {{!-- this is the content that gets passed to body in main.handlebars --}}
 
-<h1>BURGERS</h1>
-<ul>
-    {{#each burgers}}
-    <li>
-        <p>Burger Name: {{this.burger_name}}</p>
-        <p>Devoured?: {{this.devoured}} </p>
-    </li>
-    {{/each }}
-</ul>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="jumbotron">
+                <h1 class="jumbotron d-flex justify-content-center">DEVOUR-DA-BURGER</h1>
+            </div>
+        </div>
+    </div>
+
+    <br />
+
+    {{!-- Burger Image --}}
+    <img src = "./assets/img/main-burger-image.png" alt="burger image">
+
+    
+
+    {{!-- <ul>
+        {{#each burgers}}
+        <li>
+            <p>Burger Name: {{this.burger_name}}</p>
+            <p>Devoured?: {{this.devoured}} </p>
+        </li>
+        {{/each }}
+    </ul> --}}
+</div>
