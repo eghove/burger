@@ -29,6 +29,12 @@ router.get("/", function(req, res) {
 });
 
 // 2. POST route that lets the user add a burger to our app
+router.post("/api/burgers", function(req, res) {
+    // add the new burger to the database
+    burger.addBurger(["burger_name"], [req.body.burger_name], function(result) {
+        res.status(200).end();
+    })
+});
 
 // 3. PUT (or update) route that lets the user devour a burger
 
