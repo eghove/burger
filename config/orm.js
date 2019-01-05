@@ -78,19 +78,40 @@ let orm = {
     },
 
     // updateOne() function
-    updateOne: function(tableInput, objColVals, condition, callBack) {
-        let queryString = "UPDATE " + tableInput;
-        queryString += " SET ";
-        queryString += objToSql(objColVals);
-        queryString += " WHERE ";
-        queryString += condition;
+    // updateOne: function(tableInput, objColVals, condition, callBack) {
+    //     let queryString = "UPDATE " + tableInput;
+    //     queryString += " SET ";
+    //     queryString += objToSql(objColVals);
+    //     queryString += " WHERE ";
+    //     queryString += condition;
 
-        // console log the query strong
-        console.log(queryString);
+    //     // console log the query strong
+    //     console.log(queryString);
 
-        // pass the queryString to the sql database
-        connection.query(queryString, function(err, result) {
-            if(err) {
+    //     // pass the queryString to the sql database
+    //     connection.query(queryString, function(err, result) {
+    //         if(err) {
+    //             throw err;
+    //         }
+
+    //         callBack(result);
+    //     });
+    // }
+
+    // updateOne() function
+    updateOne: function(tableInput, columnToChange, valueToChange, condition, callBack) {
+        let queryString1 = "UPDATE " + tableInput;
+        queryString1 += " SET " + columnToChange;
+        queryString1 += "=" + valueToChange;
+        queryString1 += " WHERE ";
+        queryString1 += condition;
+
+        // console log the query string
+        console.log(queryString1);
+
+        // pass the queryString1 to the sql database
+        connection.query(queryString1, function(err, result) {
+            if (err) {
                 throw err;
             }
 

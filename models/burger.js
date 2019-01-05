@@ -20,8 +20,8 @@ let burger = {
     },
 
     // function to devour a burger
-    devourBurger: function(objColVals, condition, callBack) {
-        orm.updateOne("burgers", objColVals, condition, function(res) {
+    devourBurger: function(columnToChange, valueToChange, condition, callBack) {
+        orm.updateOne("burgers", columnToChange, valueToChange, condition, function(res) {
             callBack(res);
         });
     }

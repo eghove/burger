@@ -29,6 +29,29 @@ $(document).ready(function () {
         );
     });
 
+    // 'Devour This' Button Listener
+    $(".devour").on("click", function(event) {
+
+        //store the id of the button clicked
+        let id = $(this).data("id");
+
+        // turning devoured to true, making it an object the model can use
+        const devoured = {
+            devoured: 1
+        };
+
+        // Send the PUT request
+        $.ajax("/api/burgers/" + id, {
+            type: "PUT",
+            data: devoured
+        }).then(
+            function() {
+                // reload the page to get the updated list
+                location.reload();
+            }
+        );
+    });
+
 
 
 }); //end of on-load

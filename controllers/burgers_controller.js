@@ -37,7 +37,23 @@ router.post("/api/burgers", function(req, res) {
 });
 
 // 3. PUT (or update) route that lets the user devour a burger
+router.put("/api/burgers/:id", function(req, res) {
 
+    //grab the id that's being changed
+    let condition = "id = " + req.params.id;
+
+    // update the burger in the database
+    burger.devourBurger("devoured", req.body.devoured
+    , condition, function(result) {
+        if(result.changedRows == 0) {
+            // if no rows were changed, then that ID does not exist
+            return res.status(404).end();
+        } else {
+            // otherwise, update must be successful
+            res.status(200).end();
+        }
+    });
+});
 
 
 
