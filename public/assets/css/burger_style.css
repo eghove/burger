@@ -3,3 +3,12 @@ body {
     background-image: url("../img/menu-restaurant-vintage-table.jpg");
     background-repeat: no-repeat;
 }
+
+.jumbotron {
+    opacity: .75;
+    padding: 15px;
+}
+
+.card {
+    opacity: .75;
+}
