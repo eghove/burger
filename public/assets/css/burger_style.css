@@ -1,14 +1,19 @@
+
+
 /* background image */
 body {
     background-image: url("../img/menu-restaurant-vintage-table.jpg");
     background-repeat: no-repeat;
+    font-family: 'Adamina', serif;
 }
 
+/* styling the jumbotron */
 .jumbotron {
     opacity: .75;
     padding: 15px;
 }
 
+/* styling the cards */
 .card {
     opacity: .75;
 }
