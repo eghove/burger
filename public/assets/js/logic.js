@@ -19,7 +19,6 @@ $(document).ready(function () {
       data: newBurger
     }).then(
       function () {
-        console.log('created new burger');
         // reload the page
         location.reload();
       }
