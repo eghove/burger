@@ -1,123 +1,82 @@
+/* eslint-disable semi */
 // IMPORT MYSQL CONNECTION
 
-let connection = require("../config/connection.js");
+var connection = require('../config/connection.js');
 
 // HELPER FUNCTIONS FOR MYSQL SYNTAX
 
 // function for passing the correct number of question marks into a sql query
-function printQuestionMarks(number) {
-    // create an empty array
-    let arr = []
+function printQuestionMarks (number) {
+  // create an empty array
+  var arr = []
 
-    // the for loop that will push the appropriate amount of question marks into the array
-    for (let i=0; i < number; i++) {
-        arr.push("?");
-    }
+  // the for loop that will push the appropriate amount of question marks into the array
+  for (var i = 0; i < number; i++) {
+    arr.push('?');
+  }
 
-    // turn the array into a string and return it
-    return arr.toString();
-}
-
-// function to convert object key/value pairs to sql syntanx
-function objToSql(obj) {
-    // create an empty array
-    let arr = [];
-
-    // loop thru the keys and push the key/value pair as a string into arr
-    for (let key in obj) {
-        let value = obj[key];
-        if (Object.hasOwnProperty.call(obj, key)) {
-            // if string with spaces, add quotations
-            if (typeof value === "string" && value.indexOf(" ") >= 0) {
-                value = "'" + value + "'";
-            }
-            arr.push(key = "=" + value);
-        }
-    }
-
-    // translate array of strongs to a single comma-separated string
-    return arr.toString();
+  // turn the array into a string and return it
+  return arr.toString();
 }
 
 // Object for the SQL statement functions that will be exported
-let orm = {
+var orm = {
 
-    // selectAll() function
-    selectAll: function(tableInput, callBack) {
-        let queryString = "SELECT * FROM " + tableInput;
+  // selectAll() function
+  selectAll: function (tableInput, callBack) {
+    var queryString = 'SELECT * FROM ' + tableInput;
 
-        // pass the queryString to the sql database
-        connection.query(queryString, function(err, result) {
-            if (err) {
-                throw err;
-            }
-            callBack(result);
-        });
-    },
+    // pass the queryString to the sql database
+    connection.query(queryString, function (err, result) {
+      if (err) {
+        throw err;
+      }
+      callBack(result);
+    });
+  },
 
-    // insertOne() function
-    insertOne: function(tableInput, columnInput, valueToInsert, callBack) {
-        let queryString = "INSERT INTO " + tableInput;
-        queryString += " (";
-        queryString += columnInput.toString();
-        queryString += ") ";
-        queryString += "VALUES (";
-        queryString += printQuestionMarks(valueToInsert.length);
-        queryString += ") ";
+  // insertOne() function
+  insertOne: function (tableInput, columnInput, valueToInsert, callBack) {
+    var queryString = 'INSERT INTO ' + tableInput;
+    queryString += ' (';
+    queryString += columnInput.toString();
+    queryString += ') ';
+    queryString += 'VALUES (';
+    queryString += printQuestionMarks(valueToInsert.length);
+    queryString += ') ';
 
-        // console log the queryString
-        console.log(queryString);
+    // console log the queryString
+    console.log(queryString);
 
-        // pass the queryString to the sql database
-        connection.query(queryString, valueToInsert, function(err, result){
-            if(err) {
-                throw err;
-            }
-            callBack(result);
-        });
-    },
+    // pass the queryString to the sql database
+    connection.query(queryString, valueToInsert, function (err, result) {
+      if (err) {
+        throw err;
+      }
+      callBack(result);
+    });
+  },
 
-    // updateOne() function
-    // updateOne: function(tableInput, objColVals, condition, callBack) {
-    //     let queryString = "UPDATE " + tableInput;
-    //     queryString += " SET ";
-    //     queryString += objToSql(objColVals);
-    //     queryString += " WHERE ";
-    //     queryString += condition;
+  // updateOne() function
+  updateOne: function (tableInput, columnToChange, valueToChange, condition, callBack) {
+    var queryString1 = 'UPDATE ' + tableInput;
+    queryString1 += ' SET ' + columnToChange;
+    queryString1 += '=' + valueToChange;
+    queryString1 += ' WHERE ';
+    queryString1 += condition;
 
-    //     // console log the query strong
-    //     console.log(queryString);
+    // console log the query string
+    console.log(queryString1);
 
-    //     // pass the queryString to the sql database
-    //     connection.query(queryString, function(err, result) {
-    //         if(err) {
-    //             throw err;
-    //         }
+    // pass the queryString1 to the sql database
+    connection.query(queryString1, function (err, result) {
+      if (err) {
+        throw err;
+      }
 
-    //         callBack(result);
-    //     });
-    // }
-
-    // updateOne() function
-    updateOne: function(tableInput, columnToChange, valueToChange, condition, callBack) {
-        let queryString1 = "UPDATE " + tableInput;
-        queryString1 += " SET " + columnToChange;
-        queryString1 += "=" + valueToChange;
-        queryString1 += " WHERE ";
-        queryString1 += condition;
-
-        // console log the query string
-        console.log(queryString1);
-
-        // pass the queryString1 to the sql database
-        connection.query(queryString1, function(err, result) {
-            if (err) {
-                throw err;
-            }
-
-            callBack(result);
-        });
-    }
+      callBack(result);
+    });
+  }
 };
 
 // export orm object for model
