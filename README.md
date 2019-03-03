@@ -13,3 +13,7 @@ Devour-Da-Burger uses the following technologies:
 * Handlebars,
 * MySQL, and
 * Express.
+
+## What Does Devour-Da-Burger Look Like?
+
+![Main Screen](https://eghove.github.io/img/portfolio/devour-da-burger.PNG "Main Screen")
